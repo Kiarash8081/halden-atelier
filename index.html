@@ -1,119 +1,94 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>هالدن | لباس</title>
-  <meta name="description" content="مجموعه لباس هالدن با انتخاب سایز، سبد و پرداخت آزمایشی." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600&display=swap" rel="stylesheet" />
+  <title>NORTHLINE | Clothing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; background: #f4f4f1; color: #111; font-family: Manrope, sans-serif; }
+    body { margin: 0; background: #fff; color: #111; font-family: Inter, sans-serif; }
     button, input, select { font-family: inherit; }
-    .side {
-      position: fixed; top: 0; bottom: 0; right: 0; width: 92px; z-index: 4;
-      border-left: 1px solid #111; display: flex; flex-direction: column; align-items: center;
-      justify-content: space-between; padding: 18px 0; background: #f4f4f1;
-    }
-    .mark { font-family: Anton, sans-serif; writing-mode: vertical-rl; letter-spacing: 0.2em; font-size: 1.4rem; }
-    .side button { background: none; border: 0; cursor: pointer; writing-mode: vertical-rl; letter-spacing: 0.12em; }
-    main { margin-right: 92px; }
-    .look { min-height: 100vh; display: grid; grid-template-columns: 1.15fr 0.85fr; }
-    .look img { width: 100%; height: 100vh; object-fit: cover; display: block; }
-    .copy { padding: 12vh 6vw; display: flex; flex-direction: column; justify-content: flex-end; }
-    h1 { font-family: Anton, sans-serif; font-size: clamp(4rem, 9vw, 8rem); line-height: 0.84; margin: 0 0 16px; letter-spacing: -0.03em; }
-    p { line-height: 1.8; max-width: 34rem; }
-    .ink { align-self: flex-start; background: #111; color: #fff; border: 0; padding: 14px 18px; cursor: pointer; }
-    .band { display: grid; grid-template-columns: 42% 58%; min-height: 78vh; border-top: 1px solid #111; }
-    .band:nth-child(even) { grid-template-columns: 58% 42%; }
-    .band:nth-child(even) img { order: 2; }
-    .band img { width: 100%; height: 78vh; object-fit: cover; }
-    .info { padding: 36px; display: flex; flex-direction: column; justify-content: center; }
-    h2 { font-family: Anton, sans-serif; font-size: 3rem; margin: 0; }
-    .price { color: #b42318; font-weight: 600; }
-    select, input { border: 0; border-bottom: 1px solid #111; background: transparent; padding: 10px 0; width: 100%; margin: 8px 0 14px; }
-    .plain { max-width: 640px; padding: 14vh 6vw; }
-    .row { display: flex; justify-content: space-between; border-top: 1px solid #111; padding: 14px 0; }
-    @media (max-width: 800px) {
-      .side { position: sticky; width: auto; height: auto; flex-direction: row; writing-mode: horizontal-tb; border-left: 0; border-bottom: 1px solid #111; }
-      .mark, .side button { writing-mode: horizontal-tb; }
-      main { margin: 0; }
-      .look, .band, .band:nth-child(even) { grid-template-columns: 1fr; }
-      .look img, .band img { height: 52vh; }
-      .band:nth-child(even) img { order: 0; }
-    }
+    header { background: #111; color: #fff; display: flex; align-items: center; gap: 18px; padding: 12px 20px; }
+    .logo { font-weight: 700; letter-spacing: .2em; font-size: 18px; }
+    .search { flex: 1; background: #fff; color: #111; border: 0; border-radius: 20px; padding: 10px 14px; }
+    header button { background: none; color: #fff; border: 0; cursor: pointer; }
+    .menu { display: flex; gap: 22px; padding: 12px 20px; border-bottom: 1px solid #e5e5e5; font-size: 14px; font-weight: 600; }
+    .toolbar { display: flex; justify-content: space-between; padding: 14px 20px; font-size: 13px; color: #444; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 0 16px 40px; }
+    .tile { background: #f6f6f6; }
+    .tile img { width: 100%; height: 320px; object-fit: cover; display: block; }
+    .pad { padding: 8px 8px 12px; background: #fff; }
+    .name { font-size: 13px; margin: 0 0 4px; }
+    .sale { color: #d01345; font-weight: 700; }
+    .old { color: #888; text-decoration: line-through; margin-right: 6px; font-weight: 400; }
+    select { width: 100%; margin-top: 8px; padding: 6px; }
+    .add { margin-top: 8px; width: 100%; background: #111; color: #fff; border: 0; padding: 8px; cursor: pointer; }
+    .sheet { max-width: 760px; margin: 24px auto; padding: 0 16px 40px; }
+    .row { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 12px 0; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } .menu { overflow: auto; } }
   </style>
 </head>
 <body>
-  <aside class="side">
-    <div class="mark">HALDEN</div>
-    <button data-go="shop">فروشگاه</button>
-    <button data-go="orders">سفارش</button>
-    <button data-go="contact">تماس</button>
-    <button id="loginBtn">ورود</button>
-    <button id="cartBtn">سبد <span id="count">0</span></button>
-  </aside>
+  <header>
+    <div class="logo">NORTHLINE</div>
+    <input class="search" placeholder="Search clothes, shoes, coats" />
+    <button data-go="shop">New in</button>
+    <button id="loginBtn">Account</button>
+    <button id="cartBtn">Bag <span id="count">0</span></button>
+  </header>
+  <div class="menu"><span>New in</span><span>Clothing</span><span>Dresses</span><span>Shoes</span><span>Coats</span><span>Sale</span></div>
   <main id="app"></main>
   <script>
     const products = [
-      ["coat","پالتو پشمی","برش مستقیم و آستر نرم.",8900000,"https://images.unsplash.com/photo-1539533018447-63fcce2678e3?auto=format&fit=crop&w=1400&q=80"],
-      ["shirt","پیراهن کتان","یقه باز، پارچه تنفس‌پذیر.",2400000,"https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1400&q=80"],
-      ["trouser","شلوار راست","دمپای تمیز برای هر روز.",3200000,"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=1400&q=80"],
-      ["blazer","کت بلیزر","شانه مشخص، تک‌دکمه.",7600000,"https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=1400&q=80"],
-      ["silk","پیراهن ابریشم","سبک، برای عصر.",4500000,"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80"],
-      ["shoe","کفش چرمی","کف تخت و چرم طبیعی.",5200000,"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1400&q=80"]
-    ].map(([id,name,text,price,img]) => ({id,name,text,price,img}));
-    const key = "halden-v2";
-    const read = (k,d) => { try { return JSON.parse(localStorage.getItem(key+k)) ?? d; } catch { return d; } };
-    const write = (k,v) => localStorage.setItem(key+k, JSON.stringify(v));
-    let cart = read("cart", []), user = read("user", null), orders = read("orders", []), view = "home";
-    const money = (n) => new Intl.NumberFormat("fa-IR").format(n) + " تومان";
-    const find = (id) => products.find((p) => p.id === id);
-    const app = document.getElementById("app");
-    const go = (v) => { view = v; draw(); };
-    document.getElementById("cartBtn").onclick = () => go("cart");
-    document.getElementById("loginBtn").onclick = () => go(user ? "account" : "login");
-    function band(p){return `<article class="band"><img src="${p.img}" alt="${p.name}"><div class="info"><h2>${p.name}</h2><p>${p.text}</p><p class="price">${money(p.price)}</p><select id="s-${p.id}"><option>S</option><option selected>M</option><option>L</option></select><button class="ink" data-add="${p.id}">افزودن به سبد</button></div></article>`}
+      ["c1","Wool overcoat","https://images.unsplash.com/photo-1539533018447-63fcce2678e3?auto=format&fit=crop&w=800&q=80",180,129],
+      ["c2","Linen shirt","https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=800&q=80",42,42],
+      ["c3","Straight trouser","https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80",55,39],
+      ["c4","Tailored blazer","https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=800&q=80",120,89],
+      ["c5","Slip dress","https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80",68,49],
+      ["c6","Leather court shoe","https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80",75,75],
+      ["c7","Day dress","https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80",58,45],
+      ["c8","Studio look","https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80",36,29]
+    ].map(([id,name,img,old,now])=>({id,name,img,old,now}));
+    const key="northline-v3";
+    const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(key+k))??d}catch{return d}};
+    const write=(k,v)=>localStorage.setItem(key+k,JSON.stringify(v));
+    let cart=read("c",[]), user=read("u",null), orders=read("o",[]), view="home";
+    const money=n=>"£"+n.toFixed(2);
+    const find=id=>products.find(p=>p.id===id);
+    const app=document.getElementById("app");
+    const go=v=>{view=v;draw()};
+    document.getElementById("cartBtn").onclick=()=>go("cart");
+    document.getElementById("loginBtn").onclick=()=>go(user?"account":"login");
+    function tile(p){return `<article class="tile"><img src="${p.img}" alt=""><div class="pad"><p class="name">${p.name}</p><p class="sale">${p.old!==p.now?`<span class="old">${money(p.old)}</span>`:""}${money(p.now)}</p><select id="s-${p.id}"><option>UK 8</option><option selected>UK 10</option><option>UK 12</option><option>UK 14</option></select><button class="add" data-add="${p.id}">ADD</button></div></article>`}
     function draw(){
-      document.getElementById("count").textContent = cart.reduce((s,i)=>s+i.qty,0);
-      document.getElementById("loginBtn").textContent = user ? user.name : "ورود";
-      const pages = {home, shop, cart: cartView, checkout, orders: ordersView, contact, terms, login, account};
-      app.innerHTML = pages[view]();
-      document.querySelectorAll("[data-go]").forEach((b)=>b.onclick=()=>go(b.dataset.go));
-      document.querySelectorAll("[data-add]").forEach((b)=>b.onclick=()=>{
-        const size = document.getElementById("s-"+b.dataset.add).value;
-        const hit = cart.find((x)=>x.id===b.dataset.add && x.size===size);
-        if (hit) hit.qty++; else cart.push({id:b.dataset.add,size,qty:1});
-        write("cart", cart); draw();
+      document.getElementById("count").textContent=cart.reduce((s,i)=>s+i.qty,0);
+      document.getElementById("loginBtn").textContent=user?user.name:"Account";
+      const pages={home,shop,cart:cartView,checkout,orders:ordersView,login,account};
+      app.innerHTML=pages[view]();
+      document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
+      document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{
+        const size=document.getElementById("s-"+b.dataset.add).value;
+        const hit=cart.find(x=>x.id===b.dataset.add&&x.size===size);
+        if(hit)hit.qty++; else cart.push({id:b.dataset.add,size,qty:1});
+        write("c",cart); draw();
       });
-      document.querySelectorAll("[data-del]").forEach((b)=>b.onclick=()=>{ cart.splice(+b.dataset.del,1); write("cart",cart); draw(); });
-      const pay = document.getElementById("pay");
-      if (pay) pay.onclick = () => {
-        orders.unshift({items: cart.map((i)=>({name:find(i.id).name,size:i.size,qty:i.qty})), total: cart.reduce((s,i)=>s+find(i.id).price*i.qty,0)});
-        write("orders", orders); cart=[]; write("cart", cart); go("orders");
-      };
-      const enter = document.getElementById("enter");
-      if (enter) enter.onclick = () => {
-        const name = document.getElementById("nm").value.trim();
-        const phone = document.getElementById("ph").value.trim();
-        if (!name || !phone) return;
-        user = {name, phone}; write("user", user); go("shop");
-      };
-      const out = document.getElementById("out");
-      if (out) out.onclick = () => { user=null; write("user", null); go("home"); };
+      document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.del,1);write("c",cart);draw()});
+      const pay=document.getElementById("pay");
+      if(pay)pay.onclick=()=>{orders.unshift({items:cart.map(i=>find(i.id).name+" "+i.size), total:cart.reduce((s,i)=>s+find(i.id).now*i.qty,0)});write("o",orders);cart=[];write("c",cart);go("orders")};
+      const enter=document.getElementById("enter");
+      if(enter)enter.onclick=()=>{const name=document.getElementById("nm").value.trim(); if(!name)return; user={name}; write("u",user); go("shop")};
+      const out=document.getElementById("out");
+      if(out)out.onclick=()=>{user=null;write("u",null);go("home")};
     }
-    function home(){return `<section class="look"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1800&q=80" alt=""><div class="copy"><h1>برش<br>سنگین</h1><p>شش لباس از مجموعه محدود هالدن. سایز را بردارید و سفارش را ثبت کنید.</p><button class="ink" data-go="shop">ورود به مجموعه</button></div></section>${products.slice(0,3).map(band).join("")}`}
-    function shop(){return products.map(band).join("")}
-    function cartView(){ if(!cart.length) return `<section class="plain"><h2>سبد خالی است</h2><button class="ink" data-go="shop">فروشگاه</button></section>`; const total=cart.reduce((s,i)=>s+find(i.id).price*i.qty,0); return `<section class="plain"><h2>سبد</h2>${cart.map((i,idx)=>`<div class="row"><div>${find(i.id).name}<br>${i.size} · ${i.qty}</div><div>${money(find(i.id).price*i.qty)}<br><button data-del="${idx}">حذف</button></div></div>`).join("")}<p class="price">جمع ${money(total)}</p><button class="ink" data-go="checkout">پرداخت</button></section>`}
-    function checkout(){ if(!user) return `<section class="plain"><h2>اول وارد شوید</h2><button class="ink" data-go="login">ورود</button></section>`; return `<section class="plain"><h2>پرداخت آزمایشی</h2><p>${user.name}</p><input value="6037 0000 0000 4411"><p>پرداخت واقعی انجام نمی‌شود.</p><button class="ink" id="pay">ثبت</button></section>`}
-    function ordersView(){ if(!orders.length) return `<section class="plain"><h2>سفارشی نیست</h2></section>`; return `<section class="plain"><h2>سفارش‌ها</h2>${orders.map((o)=>`<div class="row"><span>${o.items.map(i=>i.name).join("، ")}</span><span>${money(o.total)}</span></div>`).join("")}</section>`}
-    function contact(){ return `<section class="plain"><h2>تماس</h2><p>تلفن ۰۲۱۹۱۰۰۴۴۱۱</p><p>پاسخگویی هر روز ۱۲ تا ۲۱.</p></section>`}
-    function terms(){ return `<section class="plain"><h2>قوانین</h2><p>قیمت‌ها نمونه هستند و سفارش فقط روی همین دستگاه می‌ماند.</p></section>`}
-    function login(){ return `<section class="plain"><h2>ورود</h2><input id="nm" placeholder="نام"><input id="ph" placeholder="موبایل"><button class="ink" id="enter">ادامه</button></section>`}
-    function account(){ return `<section class="plain"><h2>${user.name}</h2><p>${user.phone}</p><button class="ink" id="out">خروج</button></section>`}
-    document.querySelectorAll(".side [data-go]").forEach((b)=>b.onclick=()=>go(b.dataset.go));
+    function home(){return `<div class="toolbar"><span>${products.length} styles</span><span>Sort: Price low to high</span></div><div class="grid">${products.map(tile).join("")}</div>`}
+    function shop(){return home()}
+    function cartView(){if(!cart.length)return `<div class="sheet"><h2>Nothing in your bag</h2><button class="add" data-go="shop">Shop new in</button></div>`; const total=cart.reduce((s,i)=>s+find(i.id).now*i.qty,0); return `<div class="sheet"><h2>Bag</h2>${cart.map((i,idx)=>`<div class="row"><div>${find(i.id).name}<br>${i.size} × ${i.qty}</div><div>${money(find(i.id).now*i.qty)}<br><button data-del="${idx}">Remove</button></div></div>`).join("")}<p><b>${money(total)}</b></p><button class="add" data-go="checkout">CHECKOUT</button></div>`}
+    function checkout(){if(!user)return `<div class="sheet"><h2>Sign in first</h2><button class="add" data-go="login">Account</button></div>`; return `<div class="sheet"><h2>Demo payment</h2><input value="4242 4242 4242 4242"><p>No charge is made.</p><button class="add" id="pay">PAY NOW</button></div>`}
+    function ordersView(){if(!orders.length)return `<div class="sheet"><h2>No orders</h2></div>`; return `<div class="sheet"><h2>Orders</h2>${orders.map(o=>`<div class="row"><span>${o.items.join(", ")}</span><b>${money(o.total)}</b></div>`).join("")}</div>`}
+    function login(){return `<div class="sheet"><h2>Account</h2><input id="nm" placeholder="Name"><button class="add" id="enter">Continue</button></div>`}
+    function account(){return `<div class="sheet"><h2>${user.name}</h2><button class="add" id="out">Sign out</button></div>`}
+    document.querySelectorAll("header [data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
     draw();
   </script>
 </body>
