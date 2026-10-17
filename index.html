@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>هالدن | لباس آماده و دوخت محدود</title>
+  <meta name="description" content="پالتو، پیراهن و کت با قیمت نمونه. انتخاب سایز، سبد خرید و پرداخت آزمایشی." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f3f1ec; --ink: #111111; --muted: #5e5a55; --accent: #9d1c2b; --card: #ffffff;
+      --serif: "Syne", serif; --sans: "Manrope", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; }
+    button, input, select { font-family: inherit; }
+    header {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; align-items: center; gap: 18px;
+      padding: 16px 6vw; background: color-mix(in srgb, var(--bg) 88%, white);
+      border-bottom: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+      backdrop-filter: blur(10px);
+    }
+    .brand { font-family: var(--serif); font-size: 1.6rem; letter-spacing: 0.12em; text-decoration: none; }
+    nav { display: flex; gap: 16px; margin-inline-start: auto; }
+    nav button, .icon-btn {
+      background: none; border: 0; cursor: pointer; color: var(--ink); font-size: 0.92rem;
+    }
+    .icon-btn { border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); border-radius: 999px; padding: 8px 12px; }
+    main { padding: 28px 6vw 70px; }
+    .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; min-height: 68vh; }
+    body.editorial .hero { grid-template-columns: 0.8fr 1.2fr; }
+    body.botanical .hero { background: var(--card); border-radius: 36px; padding: 28px; }
+    .kicker { letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-size: 0.75rem; }
+    h1 { font-family: var(--serif); font-weight: 560; font-size: clamp(2.4rem, 5vw, 4.6rem); line-height: 1.05; margin: 10px 0; }
+    .lede { color: var(--muted); font-size: 1.05rem; line-height: 1.9; max-width: 38rem; }
+    .hero img, .card img { width: 100%; object-fit: cover; display: block; }
+    .hero img { height: 68vh; border-radius: 8px; }
+    body.maison .hero img { border-radius: 180px 180px 12px 12px; height: 72vh; }
+    body.botanical .hero img { border-radius: 28px; height: 52vh; }
+    .actions { display: flex; gap: 10px; margin-top: 18px; }
+    .btn { border: 0; cursor: pointer; border-radius: 999px; padding: 12px 18px; background: var(--ink); color: var(--bg); }
+    .btn.ghost { background: transparent; color: var(--ink); border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+    body.editorial .grid { grid-template-columns: 1fr; }
+    body.editorial .card { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: center; }
+    .card { background: var(--card); border-radius: 18px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent); }
+    .card img { height: 240px; }
+    body.editorial .card img { height: 180px; }
+    .card div { padding: 14px 16px 16px; }
+    .price { color: var(--accent); font-weight: 600; }
+    .panel { max-width: 760px; }
+    label { display: block; margin: 12px 0 6px; font-size: 0.85rem; }
+    input, select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); background: white; }
+    .row { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent); }
+    .note { color: var(--muted); line-height: 1.8; }
+    footer { padding: 28px 6vw 40px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; }
+    @media (max-width: 860px) {
+      .hero, body.editorial .hero, body.editorial .card, .grid { grid-template-columns: 1fr; }
+      .hero img, body.maison .hero img { height: 42vh; }
+      nav { display: none; }
+      header { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body class="editorial">
+  <header>
+    <a class="brand" href="#home" id="brand">HALDEN</a>
+    <nav>
+      <button data-go="home">خانه</button>
+      <button data-go="shop">فروشگاه</button>
+      <button data-go="orders">سفارش‌ها</button>
+      <button data-go="contact">تماس</button>
+      <button data-go="terms">قوانین</button>
+    </nav>
+    <button class="icon-btn" id="loginBtn">ورود</button>
+    <button class="icon-btn" id="cartBtn">سبد <span id="cartCount">0</span></button>
+  </header>
+  <main id="app"></main>
+  <footer>
+    <span>هالدن · قیمت‌ها نمونه و برای نمایش هستند</span>
+    <span>تهران، فرمانیه، آتلیه هالدن</span>
+  </footer>
+  <script>
+    const SITE = {"repo": "halden-atelier", "kicker": "Ready-to-wear", "hero_title": "لباس‌هایی با برش آرام و پارچه سنگین", "hero_text": "شش مدل از مجموعه پاییز. سایز را انتخاب کنید، به سبد اضافه کنید و سفارش را مثل یک فروشگاه واقعی تا پایان ببرید.", "hero_img": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80", "brand_fa": "هالدن", "noun": "لباس", "address": "تهران، فرمانیه، آتلیه هالدن", "phone": "021-9100-4411", "products": [{"id": "coat", "name": "پالتو پشمی", "text": "برش مستقیم، آستر نرم.", "price": 8900000, "img": "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?auto=format&fit=crop&w=900&q=80"}, {"id": "shirt", "name": "پیراهن کتان", "text": "یقه باز و پارچه تنفس‌پذیر.", "price": 2400000, "img": "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=900&q=80"}, {"id": "trouser", "name": "شلوار راست", "text": "دمپای تمیز برای استایل روزانه.", "price": 3200000, "img": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=80"}, {"id": "blazer", "name": "کت بلیزر", "text": "شانه مشخص و تک‌دکمه.", "price": 7600000, "img": "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=80"}, {"id": "silk", "name": "پیراهن ابریشم", "text": "پارچه سبک برای عصر.", "price": 4500000, "img": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80"}, {"id": "shoe", "name": "کفش چرمی", "text": "کف تخت و چرم طبیعی.", "price": 5200000, "img": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=80"}]};
+    const KEY = "shop-" + SITE.repo;
+    const money = (n) => new Intl.NumberFormat("fa-IR").format(n) + " تومان";
+    const load = (k, d) => { try { return JSON.parse(localStorage.getItem(KEY + k)) ?? d; } catch { return d; } };
+    const save = (k, v) => localStorage.setItem(KEY + k, JSON.stringify(v));
+    let cart = load("cart", []);
+    let user = load("user", null);
+    let orders = load("orders", []);
+    let view = "home";
+    const app = document.getElementById("app");
+
+    function setView(v) { view = v; draw(); }
+    document.querySelectorAll("[data-go]").forEach((b) => b.onclick = () => setView(b.dataset.go));
+    document.getElementById("cartBtn").onclick = () => setView("cart");
+    document.getElementById("loginBtn").onclick = () => setView(user ? "account" : "login");
+
+    function add(id, size) {
+      const item = cart.find((x) => x.id === id && x.size === size);
+      if (item) item.qty += 1; else cart.push({ id, size, qty: 1 });
+      save("cart", cart); draw();
+    }
+    function product(id) { return SITE.products.find((p) => p.id === id); }
+
+    function draw() {
+      document.getElementById("cartCount").textContent = cart.reduce((s, i) => s + i.qty, 0);
+      document.getElementById("loginBtn").textContent = user ? user.name : "ورود";
+      const pages = { home: home, shop: shop, cart: cartView, checkout: checkout, orders: ordersView, contact: contact, terms: terms, login: login, account: account };
+      app.innerHTML = (pages[view] || home)();
+      bind();
+    }
+    function home() {
+      return `<section class="hero">
+        <div>
+          <p class="kicker">${SITE.kicker}</p>
+          <h1>${SITE.hero_title}</h1>
+          <p class="lede">${SITE.hero_text}</p>
+          <div class="actions">
+            <button class="btn" data-go="shop">دیدن ${SITE.noun}ها</button>
+            <button class="btn ghost" data-go="contact">تماس</button>
+          </div>
+        </div>
+        <img src="${SITE.hero_img}" alt="${SITE.brand_fa}" />
+      </section>`;
+    }
+    function shop() {
+      return `<h1>فروشگاه</h1><div class="grid">${SITE.products.map((p) => `
+        <article class="card">
+          <img src="${p.img}" alt="${p.name}" />
+          <div>
+            <h3>${p.name}</h3>
+            <p class="note">${p.text}</p>
+            <p class="price">${money(p.price)}</p>
+            <label>اندازه
+              <select id="size-${p.id}"><option>کوچک</option><option selected>متوسط</option><option>بزرگ</option></select>
+            </label>
+            <button class="btn" data-add="${p.id}">افزودن به سبد</button>
+          </div>
+        </article>`).join("")}</div>`;
+    }
+    function cartView() {
+      if (!cart.length) return `<div class="panel"><h1>سبد خالی است</h1><p class="note">هنوز ${SITE.noun}ی انتخاب نشده.</p><button class="btn" data-go="shop">بازگشت به فروشگاه</button></div>`;
+      const rows = cart.map((i, idx) => {
+        const p = product(i.id);
+        return `<div class="row"><div><strong>${p.name}</strong><div class="note">${i.size} · ${i.qty}</div></div><div>${money(p.price * i.qty)}<br><button data-del="${idx}">حذف</button></div></div>`;
+      });
+      const total = cart.reduce((s, i) => s + product(i.id).price * i.qty, 0);
+      return `<div class="panel"><h1>سبد</h1>${rows.join("")}<p class="price">جمع ${money(total)}</p><button class="btn" data-go="checkout">ادامه به پرداخت</button></div>`;
+    }
+    function checkout() {
+      if (!user) return `<div class="panel"><h1>اول وارد شوید</h1><p class="note">مثل کافه نوا، سفارش بعد از ورود ثبت می‌شود.</p><button class="btn" data-go="login">ورود</button></div>`;
+      const total = cart.reduce((s, i) => s + product(i.id).price * i.qty, 0);
+      return `<div class="panel"><h1>پرداخت آزمایشی</h1><p class="note">${user.name} · جمع ${money(total)}</p>
+        <label>شماره کارت<input value="6037-0000-0000-4410" /></label>
+        <p class="note">این پرداخت واقعی نیست و فقط سفارش را در همین مرورگر ذخیره می‌کند.</p>
+        <button class="btn" id="pay">پرداخت و ثبت سفارش</button></div>`;
+    }
+    function ordersView() {
+      if (!orders.length) return `<div class="panel"><h1>سفارشی نیست</h1><p class="note">بعد از پرداخت، سفارش اینجا دیده می‌شود.</p></div>`;
+      return `<div class="panel"><h1>سفارش‌ها</h1>${orders.map((o) => `<div class="row"><div>${o.items.map((i) => i.name + " (" + i.size + ")").join("، ")}</div><div>${money(o.total)}</div></div>`).join("")}</div>`;
+    }
+    function contact() {
+      return `<div class="panel"><h1>ارتباط</h1><p>${SITE.address}</p><p>تلفن ${SITE.phone}</p><p class="note">ساعت کار: هر روز ۱۲ تا ۲۱</p></div>`;
+    }
+    function terms() {
+      return `<div class="panel"><h1>قوانین</h1><p class="note">قیمت‌ها نمونه هستند. سفارش بعد از پرداخت آزمایشی در همین مرورگر می‌ماند و به بانک وصل نیست. آماده‌سازی کالا نمایشی است.</p></div>`;
+    }
+    function login() {
+      return `<div class="panel"><h1>ورود سریع</h1><label>نام<input id="nm" /></label><label>موبایل<input id="ph" /></label><button class="btn" id="doLogin">ورود و ادامه</button></div>`;
+    }
+    function account() {
+      return `<div class="panel"><h1>${user.name}</h1><p class="note">${user.phone}</p><button class="btn ghost" id="logout">خروج</button></div>`;
+    }
+    function bind() {
+      document.querySelectorAll("[data-go]").forEach((b) => b.onclick = () => setView(b.dataset.go));
+      document.querySelectorAll("[data-add]").forEach((b) => b.onclick = () => add(b.dataset.add, document.getElementById("size-" + b.dataset.add).value));
+      document.querySelectorAll("[data-del]").forEach((b) => b.onclick = () => { cart.splice(Number(b.dataset.del), 1); save("cart", cart); draw(); });
+      const pay = document.getElementById("pay");
+      if (pay) pay.onclick = () => {
+        const items = cart.map((i) => ({ name: product(i.id).name, size: i.size, qty: i.qty }));
+        const total = cart.reduce((s, i) => s + product(i.id).price * i.qty, 0);
+        orders.unshift({ items, total, at: Date.now() });
+        save("orders", orders); cart = []; save("cart", cart); setView("orders");
+      };
+      const doLogin = document.getElementById("doLogin");
+      if (doLogin) doLogin.onclick = () => {
+        const name = document.getElementById("nm").value.trim();
+        const phone = document.getElementById("ph").value.trim();
+        if (!name || !phone) return;
+        user = { name, phone }; save("user", user); setView("shop");
+      };
+      const logout = document.getElementById("logout");
+      if (logout) logout.onclick = () => { user = null; save("user", null); setView("home"); };
+    }
+    draw();
+  </script>
+</body>
+</html>
